@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="NavMenuLayout">
+        <attr name="menuCount" format="integer"/><!--菜单个数-->
+    </declare-styleable>
+</resources>
