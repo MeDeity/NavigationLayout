@@ -180,6 +180,27 @@ public class NavMenuLayout extends LinearLayout{
         return instance;
     }
 
+    public NavMenuLayout setRedPoint(int position){
+        if (position>=0&&position<menuItems.size()){
+            menuItems.get(position).setRedPoint();
+        }
+        return instance;
+    }
+
+    public NavMenuLayout setUnreadNum(int position,String number){
+        if (position>=0&&position<menuItems.size()){
+            menuItems.get(position).setUnreadNum(number);
+        }
+        return instance;
+    }
+
+    public NavMenuLayout setMessage(int position,String message){
+        if (position>=0&&position<menuItems.size()){
+            menuItems.get(position).setTvMessage(message);
+        }
+        return instance;
+    }
+
     public OnItemReSelectionListener getOnItemReSelectionListener() {
         return onItemReSelectionListener;
     }
@@ -211,6 +232,33 @@ public class NavMenuLayout extends LinearLayout{
             throw new IllegalArgumentException("position is illegal");
         }
         return instance;
+    }
+
+    public NavMenuLayout setTextSize(int textSize){
+        for (int i=0;i<menuItems.size();i++){
+            menuItems.get(i).setmTextSize(textSize);
+        }
+        return instance;
+    }
+
+
+
+    public void clearPoint(int position){
+        if (position>=0&&position<menuCount){
+            menuItems.get(position).clearRedPoint();
+        }
+    }
+
+    public void clearUnreadNumber(int position){
+        if (position>=0&&position<menuCount){
+            menuItems.get(position).clearUnreadNumber();
+        }
+    }
+
+    public void clearMessage(int position){
+        if (position>=0&&position<menuCount){
+            menuItems.get(position).clearMessage();
+        }
     }
 
 }

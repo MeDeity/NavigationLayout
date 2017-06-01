@@ -34,6 +34,10 @@ public class MainActivity extends AppCompatActivity implements NavMenuLayout.OnI
                 .setTextColorStatus(android.R.color.black,R.color.colorAccent)
                 .setOnItemReSelectionListener(this)
                 .setOnItemSelectionListener(this)
+                .setRedPoint(0)
+                .setTextSize(12)
+                .setUnreadNum(1,"99+")
+                .setMessage(2,"NEW")
                 .setSelected(0);
 
         listFragment = new ArrayList<>();
@@ -64,12 +68,14 @@ public class MainActivity extends AppCompatActivity implements NavMenuLayout.OnI
     @Override
     public void onItemReSelect(int postion) {
         Toast.makeText(MainActivity.this,"被重复点击"+postion,Toast.LENGTH_SHORT).show();
+        navMenuLayout.setMessage(postion,"NEW");
     }
 
     @Override
     public void onItemSelect(int postion) {
 //        Toast.makeText(MainActivity.this,"被点击"+postion,Toast.LENGTH_SHORT).show();
         viewPager.setCurrentItem(postion);
+        navMenuLayout.clearMessage(postion);
     }
 
     class MyAdapter extends FragmentPagerAdapter {

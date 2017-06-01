@@ -20,30 +20,31 @@
             android:id="@+id/tv_unreadNum"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/red_point"
+            android:background="@drawable/red_corner_bg"
             android:textColor="@android:color/white"
             android:layout_gravity="center_horizontal"
             android:layout_marginStart="14dp"
             android:layout_marginLeft="14dp"
+            android:textSize="12sp"
             android:visibility="gone"/>
 
         <TextView
             android:id="@+id/tv_message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/red_point"
+            android:background="@drawable/red_corner_bg"
             android:textColor="@android:color/white"
             android:layout_gravity="center_horizontal"
             android:layout_marginStart="14dp"
             android:layout_marginLeft="14dp"
+            android:textSize="12sp"
             android:visibility="gone"/>
 
         <TextView
             android:id="@+id/tv_point"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
             android:background="@drawable/red_point"
-            android:textColor="@android:color/white"
             android:layout_gravity="center_horizontal"
             android:layout_marginStart="14dp"
             android:layout_marginLeft="14dp"

@@ -41,6 +41,8 @@ public class NavMenuItem extends FrameLayout {
     private int mTextColorNormal;
     /**文本选中的状态颜色,默认红色*/
     private int mTextColorSelected;
+    /**文本大小,默认大小*/
+    private int mTextSize = 12;
     /**当前是否处于选中状态*/
     private boolean isSelected = false;//当前item是否被选中
 
@@ -134,5 +136,60 @@ public class NavMenuItem extends FrameLayout {
         if (!TextUtils.isEmpty(mText)){
             navText.setText(mText); //设置NavMenuItem的文本内容
         }
+    }
+
+    private void hideView(View view){
+        if(View.VISIBLE==view.getVisibility()){
+            view.setVisibility(View.GONE);
+        }
+    }
+
+    public void hideAllExtraView(){
+        hideView(tvMessage);
+        hideView(tvPoint);
+        hideView(unreadNum);
+    }
+
+    /**显示小红点*/
+    public void setRedPoint(){
+        hideAllExtraView();
+        if (View.VISIBLE!=tvPoint.getVisibility()){
+            tvPoint.setVisibility(VISIBLE);
+        }
+    }
+
+    public void setUnreadNum(String num){
+        hideAllExtraView();
+        if (View.VISIBLE!=unreadNum.getVisibility()){
+            unreadNum.setVisibility(VISIBLE);
+        }
+        unreadNum.setText(num);
+    }
+
+    public void setTvMessage(String message){
+        hideAllExtraView();
+        if (View.VISIBLE!=tvMessage.getVisibility()){
+            tvMessage.setVisibility(VISIBLE);
+        }
+        tvMessage.setText(String.valueOf(message));
+    }
+
+    public void setmTextSize(int mTextSize) {
+        this.mTextSize = mTextSize;
+        if (mTextSize>0){////设置文本大小
+            navText.setTextSize(mTextSize);
+        }
+    }
+
+    public void clearRedPoint(){
+        hideView(tvPoint);
+    }
+
+    public void clearUnreadNumber(){
+        hideView(unreadNum);
+    }
+
+    public void clearMessage(){
+        hideView(tvMessage);
     }
 }
