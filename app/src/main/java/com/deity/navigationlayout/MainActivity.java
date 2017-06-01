@@ -2,10 +2,11 @@ package com.deity.navigationlayout;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast;
 
 import com.deity.navigation.NavMenuLayout;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements NavMenuLayout.OnItemReSelectionListener,NavMenuLayout.OnItemSelectionListener {
     private NavMenuLayout navMenuLayout;
 
     private int[] iconRes = {R.mipmap.ic_home_normal, R.mipmap.ic_managemoney_normal, R.mipmap.ic_me_normal};
@@ -20,7 +21,21 @@ public class MainActivity extends AppCompatActivity {
 
         navMenuLayout.setIconResNormal(iconRes)
                 .setIconResSelected(iconResSelected)
-                .setTextRes(textRes);
+                .setTextRes(textRes)
+                .setTextColorStatus(android.R.color.black,R.color.colorAccent)
+                .setOnItemReSelectionListener(this)
+                .setOnItemSelectionListener(this)
+                .setSelected(0);
 
+    }
+
+    @Override
+    public void onItemReSelect(int postion) {
+        Toast.makeText(MainActivity.this,"被重复点击"+postion,Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onItemSelect(int postion) {
+        Toast.makeText(MainActivity.this,"被点击"+postion,Toast.LENGTH_SHORT).show();
     }
 }

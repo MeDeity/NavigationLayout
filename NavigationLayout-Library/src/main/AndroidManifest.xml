@@ -2,7 +2,10 @@
 
     package="com.deity.navigation">
 
-    <application android:allowBackup="true" android:label="@string/app_name"
+    <application
+        android:name=".data.AppApplication"
+        android:allowBackup="true"
+        android:label="@string/app_name"
         android:supportsRtl="true">
 
     </application>

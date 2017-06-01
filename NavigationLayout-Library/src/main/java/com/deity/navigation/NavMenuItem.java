@@ -4,12 +4,16 @@ import android.content.Context;
 import android.support.annotation.AttrRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.deity.navigation.utils.I18NData;
 
 /**
  * Item
@@ -18,6 +22,7 @@ import android.widget.TextView;
 
 @SuppressWarnings({"FieldCanBeLocal", "unused"})
 public class NavMenuItem extends FrameLayout {
+    private final static String TAG = NavMenuItem.class.getSimpleName();
 
     private View mRootView;
     private ImageView navImageView;//导航图片
@@ -26,15 +31,16 @@ public class NavMenuItem extends FrameLayout {
     private TextView tvMessage;//导航额外信息提示
     private TextView tvPoint;//红点
 
+    /**导航Item的文字描述*/
     private String mText;
     /**图片资源*/
     private int mIconResNormal = 0;
     /**选中状态下的资源*/
     private int mIconResSelected = 0;
-    /**文本未选中的状态颜色*/
-    private int mTextColorNormal = 0;
-    /**文本选中的状态颜色*/
-    private int mTextColorSelected = 0;
+    /**文本未选中的状态颜色,默认黑色*/
+    private int mTextColorNormal;
+    /**文本选中的状态颜色,默认红色*/
+    private int mTextColorSelected;
     /**当前是否处于选中状态*/
     private boolean isSelected = false;//当前item是否被选中
 
@@ -52,26 +58,25 @@ public class NavMenuItem extends FrameLayout {
     }
 
     public void initView(Context context){
-        mRootView = LayoutInflater.from(context).inflate(R.layout.item_nav_menu,this,false);
+        mRootView = LayoutInflater.from(context).inflate(R.layout.item_nav_menu,this,true);
         navImageView = (ImageView) mRootView.findViewById(R.id.nav_image);
         navText = (TextView) mRootView.findViewById(R.id.nav_description);
         unreadNum = (TextView) mRootView.findViewById(R.id.tv_unreadNum);
         tvMessage = (TextView) mRootView.findViewById(R.id.tv_message);
         tvPoint = (TextView) mRootView.findViewById(R.id.tv_point);
-        addView(mRootView);
     }
 
     /**
      * 当Item处于选中状态的情况下
      * 修改Item的的图片信息及文字颜色
      */
-    public void refreshState(boolean isSelected){
+    private void refreshState(boolean isSelected){
         if (isSelected){
-            navImageView.setImageResource(mIconResSelected);
-            navText.setTextColor(mTextColorSelected);
+            navImageView.setBackgroundResource(mIconResSelected);
+            navText.setTextColor(I18NData.obtain18NColor(mTextColorSelected));
         }else {
-            navImageView.setImageResource(mIconResNormal);
-            navText.setTextColor(mTextColorNormal);
+            navImageView.setBackgroundResource(mIconResNormal);
+            navText.setTextColor(I18NData.obtain18NColor(mTextColorNormal));
         }
     }
 
@@ -92,6 +97,10 @@ public class NavMenuItem extends FrameLayout {
         return mIconResSelected;
     }
 
+    /**
+     * 设置被选中的图片资源
+     * @param mIconResSelected 被选中的图片资源
+     */
     public void setmIconResSelected(int mIconResSelected) {
         this.mIconResSelected = mIconResSelected;
     }
@@ -116,7 +125,14 @@ public class NavMenuItem extends FrameLayout {
         return mText;
     }
 
+    /**
+     * 设置NavMenuItem的文字描述
+     * @param mText
+     */
     public void setmText(String mText) {
         this.mText = mText;
+        if (!TextUtils.isEmpty(mText)){
+            navText.setText(mText); //设置NavMenuItem的文本内容
+        }
     }
 }

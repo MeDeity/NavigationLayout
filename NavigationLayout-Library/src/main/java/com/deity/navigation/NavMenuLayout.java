@@ -42,12 +42,12 @@ public class NavMenuLayout extends LinearLayout{
 
     public NavMenuLayout(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        this.context = context;
         init(context,attrs,defStyleAttr);
     }
 
     public void init(Context context, AttributeSet attrs, int defStyleAttr){
         instance = this;
+        this.context = context;
         TypedArray typedArray = getContext().obtainStyledAttributes(attrs,R.styleable.NavMenuLayout,defStyleAttr,0);
         if (null!=typedArray){
             menuCount = typedArray.getInt(R.styleable.NavMenuLayout_menuCount,0);
@@ -70,11 +70,11 @@ public class NavMenuLayout extends LinearLayout{
             navMenuItem.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    int postion = getSelectionItem(navMenuItem);
-                    if (postion == currentSelectPosition){
-                        onItemReClick(postion);
+                    int position = getSelectionItem(navMenuItem);
+                    if (position == currentSelectPosition){
+                        onItemReClick(position);
                     }else {
-                        onItemClick(postion);
+                        onItemClick(position);
                     }
                 }
             });
@@ -169,6 +169,32 @@ public class NavMenuLayout extends LinearLayout{
                 menuItems.get(i).setmText(listTextRes[i]);
             }
         }
+        return instance;
+    }
+
+    public NavMenuLayout setTextColorStatus(int mTextColorNormal,int mTextColorSelected){
+        for (int i=0;i<menuCount;i++){
+            menuItems.get(i).setmTextColorNormal(mTextColorNormal);
+            menuItems.get(i).setmTextColorSelected(mTextColorSelected);
+        }
+        return instance;
+    }
+
+    public OnItemReSelectionListener getOnItemReSelectionListener() {
+        return onItemReSelectionListener;
+    }
+
+    public NavMenuLayout setOnItemReSelectionListener(OnItemReSelectionListener onItemReSelectionListener) {
+        this.onItemReSelectionListener = onItemReSelectionListener;
+        return instance;
+    }
+
+    public OnItemSelectionListener getOnItemSelectionListener() {
+        return onItemSelectionListener;
+    }
+
+    public NavMenuLayout setOnItemSelectionListener(OnItemSelectionListener onItemSelectionListener) {
+        this.onItemSelectionListener = onItemSelectionListener;
         return instance;
     }
 
