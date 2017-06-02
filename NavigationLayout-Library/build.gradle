@@ -38,7 +38,7 @@ dependencies {
 
 //添加
 publish {
-    userOrg = 'deity'//bintray.com用户名 --->这个应该是组织名
+    userOrg = 'tbmedeity'//bintray.com用户名 --->这个应该是组织名(如果创建了组织账号)
     groupId = 'com.deity'//jcenter上的路径
     artifactId = 'NavigationLayout-Library'//项目名称
     publishVersion = '1.0.00'//版本号
