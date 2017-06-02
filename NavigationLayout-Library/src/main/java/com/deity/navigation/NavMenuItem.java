@@ -129,7 +129,7 @@ public class NavMenuItem extends FrameLayout {
 
     /**
      * 设置NavMenuItem的文字描述
-     * @param mText
+     * @param mText 文本信息
      */
     public void setmText(String mText) {
         this.mText = mText;
